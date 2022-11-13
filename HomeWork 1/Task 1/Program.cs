@@ -7,7 +7,9 @@ Console.WriteLine("Напишите 2 числа для сравнения");
 Console.Write("Напишите 1 число, ");
 int num1 = int.Parse(Console.ReadLine()!);
 Console.Write("Напишите 2 число, ");
-int num2 = int.Parse(Console.ReadLine()!);
+int num2 = int.Parse(Console.ReadLine()!); 
+
+// double num2 = double.Parse(Console.ReadLine()!); 
 
 if (num1 > num2)
 {
