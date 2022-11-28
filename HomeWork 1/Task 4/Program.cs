@@ -9,7 +9,7 @@ int num = int.Parse(Console.ReadLine()!);
 int score = 1;
 
 // 1 ВАРИАНТ
-/*
+
 while (score < num + 1)
 {
     if (score % 2 == 0)
@@ -18,7 +18,7 @@ while (score < num + 1)
     }
     score++;
 }
-*/
+
 
 // 2 ВАРИАНТ (Есть точка в конце вывода чисел)
 /*
