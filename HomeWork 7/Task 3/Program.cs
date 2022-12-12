@@ -33,17 +33,17 @@ void PrintMass(double[,] array)
     }
 }
 
-// double[,] SrAr(double[,] array)
-// {
-//     double[,] result = new double[array.GetLength(0), 1];
-//     for (int i = 0; i < array.GetLength(0); i++)
-//     {
-//         double temp = 0;
-//         for (int j = 0; j < array.GetLength(1); j++)
-//         {
-//             temp = temp + array[i, j];
-//         }
-//         result[i, 0] = temp / array.GetLength(1);
-//     }
-//     return result;
-// }
+double[,] SrAr(double[,] array)
+{
+    double[,] result = new double[array.GetLength(0), 1];
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        double temp = 0;
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            temp = temp + array[i, j];
+        }
+        result[i, 0] = temp / array.GetLength(1);
+    }
+    return result;
+}
