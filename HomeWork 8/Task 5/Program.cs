@@ -2,48 +2,78 @@
 Напишите программу, которая заполнит спирально массив 4 на 4.
 */
 
-string[,] mass = NewMass(4, 4);
+Console.WriteLine("Введите кол-во строк: ");
+int str = int.Parse(Console.ReadLine()!);
+Console.WriteLine("Введите кол-во столбцов: ");
+int stlb = int.Parse(Console.ReadLine()!);
+
+int[,] mass = NewMass(str, stlb);
 PrintMass(mass);
 
-string[,] NewMass(int str, int stlb)
+int[,] NewMass(int str, int stlb)
 {
-    string[,] result = new string[str, stlb];
-    int i = 0;
-    int j = 0;
-    
-    for (j = 0; j < stlb; j++)
+    int[,] result = new int[str, stlb];
+    int i = 0; int m = 0; int str1 = str - 1;
+    int j = 0; int n = 0; int stlb1 = stlb - 1;
+    int k = 1;
+    int size = str;
+    if (size % 2 == 0) size = size / 2;
+    else size = size / 2 + 1;
+
+    while (m < size && n < size)
     {
-        result[i, j] = Convert.ToString(i) + Convert.ToString(j + 1);
+        while (j < stlb1 - n)
+        {
+            result[i, j] = k;
+            j++; k++;
+        }
+        while (i < str1 - m)
+        {
+            result[i, j] = k;
+            i++; k++;
+        }
+        while (j != 0 + n)
+        {
+            result[i, j] = k;
+            j--; k++;
+        }
+        while (i != 1 + m)
+        {
+            result[i, j] = k;
+            i--; k++;
+        }
+        m++; n++;
     }
-    for (i = 1; i < str; i++)
+    while (j == stlb - n && result[i, j] == 0)
     {
-        result[i, j - 1] = Convert.ToString(i - i) + Convert.ToString(j + i);
+        result[i, j] = k;
+        j++; k++;
     }
-    int k = 0;
-    for (j = j - 1; j > 0; j--)
+    while (i == str - m && result[i, j] == 0)
     {
-        result[i - 1, j] = Convert.ToString(i - i) + Convert.ToString(j + i+ k);
-        k= k + 2;
+        result[i, j] = k;
+        i++; k++;
     }
-    for (i = 0; i > 0; i--)
+    while (j != 0 + n && result[i, j] == 0)
     {
-        result[i - 1, j] = Convert.ToString(1) + Convert.ToString(j);
+        result[i, j] = k;
+        j--; k++;
     }
-    for (j = 0; j < 3; j++)
+    while (i != 0 + m && result[i, j] == 0)
     {
-        result[i, j] = Convert.ToString(1) + Convert.ToString(j);
+        result[i, j] = k;
+        i--; k++;
     }
     return result;
 }
 
-
-void PrintMass(string[,] array)
+void PrintMass(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write($"{array[i, j]} ");
+            Console.Write("{0,4}", array[i, j]);
         }
         Console.WriteLine();
     }
