@@ -13,67 +13,37 @@ PrintMass(mass);
 int[,] NewMass(int str, int stlb)
 {
     int[,] result = new int[str, stlb];
-    int i = 0; int m = 0; int str1 = str - 1;
-    int j = 0; int n = 0; int stlb1 = stlb - 1;
-    int k = 1;
+    int i = 0;
+    int j = 0;
+    int k = 1; int score = 0;
     int size = str;
-    if (size % 2 == 0) size = size / 2;
-    else size = size / 2 + 1;
-
-    while (m < size && n < size)
+    for (int m = 0; m <= size; m++)
     {
-        while (j < stlb1 - n)
-        {
-            result[i, j] = k;
-            j++; k++;
-        }
-        while (i < str1 - m)
-        {
-            result[i, j] = k;
-            i++; k++;
-        }
-        while (j != 0 + n)
-        {
-            result[i, j] = k;
-            j--; k++;
-        }
-        while (i != 1 + m)
-        {
-            result[i, j] = k;
-            i--; k++;
-        }
-        m++; n++;
+        for (score = 0; score < size - 1; score++) result[i, j++] = k++;
+        for (score = 0; score < size - 1; score++) result[i++, j] = k++;
+        for (score = 0; score < size - 1; score++) result[i, j--] = k++;
+        for (score = 0; score < size - 1; score++) result[i--, j] = k++;
+        ++i; ++j;
+        size = size - 2;
     }
-    while (j == stlb - n && result[i, j] == 0)
+    if (size % 2 != 0)
     {
         result[i, j] = k;
-        j++; k++;
-    }
-    while (i == str - m && result[i, j] == 0)
-    {
-        result[i, j] = k;
-        i++; k++;
-    }
-    while (j != 0 + n && result[i, j] == 0)
-    {
-        result[i, j] = k;
-        j--; k++;
-    }
-    while (i != 0 + m && result[i, j] == 0)
-    {
-        result[i, j] = k;
-        i--; k++;
     }
     return result;
 }
-
 void PrintMass(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write("{0,4}", array[i, j]);
+            if (array[i, j] < 10)
+            {
+                Console.Write("0" + array[i, j]);
+                Console.Write(" ");
+            }
+            else Console.Write(array[i, j] + " ");
         }
         Console.WriteLine();
     }
